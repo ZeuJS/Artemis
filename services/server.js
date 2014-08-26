@@ -4,6 +4,7 @@ var server = require('../libraries/http.js');
 
 module.exports = function(services) {
   var artemisRoutes = services.findById('artemisRoutes');
+  var configs = services.findById('configs');
   server.createServer(function (req, res) {
     var currentRoute = artemisRoutes.resolve(req);
     if (typeof currentRoute === 'undefined') {
@@ -23,5 +24,5 @@ module.exports = function(services) {
     };
     res.json(currentRoute.action(rails));
 
-  }).listen(1203);
+  }).listen(configs.find('artemis').listen);
 };

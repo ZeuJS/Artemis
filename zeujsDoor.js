@@ -36,4 +36,9 @@ module.exports =
   artemisRoutes: [
       require('./routes/index.js'),
   ],
+  configs: {
+    artemis: {
+      listen: 1203,
+    },
+  },
 };
