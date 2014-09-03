@@ -7,9 +7,9 @@ var indexDefinition = new UrlDefinition('/');
 indexDefinition.push({
   id: "GET",
   action: function action(rails) {
-    return {
+    rails.response.json({
       message: 'Welcome to the Mount Olympus.'
-    }
+    });
   }
 })
 

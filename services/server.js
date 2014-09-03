@@ -22,7 +22,7 @@ module.exports = function(services) {
       response: res,
       services: services
     };
-    res.json(currentRoute.action(rails));
+    currentRoute.action(rails);
 
   }).listen(configs.find('artemis').listen);
 };
