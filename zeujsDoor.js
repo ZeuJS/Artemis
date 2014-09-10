@@ -38,7 +38,7 @@ module.exports =
   ],
   configs: {
     artemis: {
-      listen: 1203,
+      listen: 1201,
     },
   },
 };
