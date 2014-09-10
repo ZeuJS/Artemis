@@ -33,7 +33,7 @@ UrlDefinition.prototype.compileUrl = function compileUrl() {
 
 UrlDefinition.prototype.matchRoute = function matchRoute(url) {
   var thisContext = this;
-  var route = this.compiledUrl.exec(url);
+  var route = this.compiledUrl.exec(url.pathname);
   var routeParamsKeys = Object.keys(this.routeParams)
   if (routeParamsKeys.length > 0) {
     route.forEach(function(element, i) {
@@ -43,10 +43,7 @@ UrlDefinition.prototype.matchRoute = function matchRoute(url) {
     });
 
   }
-  if (route !== null) {
-    return true;
-  }
-  return false;
+  return true;
 };
 
 module.exports = UrlDefinition;

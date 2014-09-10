@@ -2,5 +2,7 @@
   "name": "zeujsArtemis",
   "version": "0.0.1-alpha",
   "dependencies": {
+    "formidable": "~1.0.15",
+    "qs": "~2.2.3"
   }
 }
