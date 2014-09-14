@@ -52,9 +52,11 @@ function iterateMiddlewares (rails, middlewares) {
   if (middlewares.length === 0) {
     middleware(rails);
   } else {
-    middleware(rails, function (pass) {
+    middleware(rails, function (pass, cb) {
       if (pass) {
         iterateMiddlewares(rails, middlewares);
+      } else {
+        cb();
       }
     });
   }
