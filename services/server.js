@@ -34,8 +34,28 @@ module.exports = function(services) {
       }
       req.params = fields;
       req.files = files;
-      currentRoute.action(rails);
+      var middlewaresStack = [];
+      if (typeof currentRoute.middlewares === 'object') {
+        currentRoute.middlewares.forEach(function(middleware) {
+          middlewaresStack.push(services.findById('artemisMiddlewares').findById(middleware).action);
+        });
+      }
+      middlewaresStack.push(currentRoute.action);
+      iterateMiddlewares(rails, middlewaresStack);
     });
 
   }).listen(configs.find('artemis').listen);
 };
+
+function iterateMiddlewares (rails, middlewares) {
+  var middleware = middlewares.shift();
+  if (middlewares.length === 0) {
+    middleware(rails);
+  } else {
+    middleware(rails, function (pass) {
+      if (pass) {
+        iterateMiddlewares(rails, middlewares);
+      }
+    });
+  }
+}

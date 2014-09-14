@@ -1,7 +1,10 @@
 "use strict";
 
 var RoutesBag = require('./bags/routes.js');
+var MiddlewaresBag = require('./bags/middlewares.js');
+
 var RoutesMapper = require('./mappers/routes.js');
+var MiddlewaresMapper = require('./mappers/middlewares.js');
 
 module.exports =
 {
@@ -14,6 +17,10 @@ module.exports =
     {
       id: 'artemisRoutes',
       service: new RoutesBag(),
+    },
+    {
+      id: 'artemisMiddlewares',
+      service: new MiddlewaresBag(),
     },
   ],
   events: [
@@ -32,9 +39,17 @@ module.exports =
         new RoutesMapper(modules, RoutesBag);
       },
     },
+    {
+      on: 'zeujs_chaos_map',
+      id: 'mapMiddlewaresBagEngine',
+      call: function (modules, services) {
+        var middlewaresBag = services.findById('artemisMiddlewares');
+        new MiddlewaresMapper(modules, middlewaresBag);
+      },
+    },
   ],
   artemisRoutes: [
-      require('./routes/index.js'),
+    require('./routes/index.js'),
   ],
   configs: {
     artemis: {
