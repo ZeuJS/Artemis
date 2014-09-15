@@ -6,7 +6,7 @@ http.ServerResponse.prototype.json = function(json, httpCode) {
     json = typeof json !== 'undefined' ? json : { success: false, message: 'zeusjs.internal.artemis.noResponse' };
     var header = {
         'Content-Type': 'application/json; charset=utf-8',
-        'Server': 'ZeuJS/Engine',
+        'Server': 'ZeuJS/Artemis',
         'X-Powered-By': 'ZeuJS'
     };
     this.writeHead(httpCode, header);
