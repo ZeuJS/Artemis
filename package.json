@@ -1,8 +1,12 @@
 {
-  "name": "zeujsArtemis",
+  "name": "zeujs-artemis",
   "version": "0.0.1-alpha",
   "dependencies": {
     "formidable": "~1.0.15",
     "qs": "~2.2.3"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/ZeuJS/Artemis.git"
   }
 }
