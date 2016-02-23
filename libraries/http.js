@@ -7,8 +7,11 @@ http.ServerResponse.prototype.json = function(json, httpCode) {
     var header = {
         'Content-Type': 'application/json; charset=utf-8',
         'Server': 'ZeuJS/Artemis',
-        'X-Powered-By': 'ZeuJS'
-    };
+        'X-Powered-By': 'ZeuJS',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'authorization'
+
+};
     this.writeHead(httpCode, header);
     this.end(JSON.stringify(json));
 };
